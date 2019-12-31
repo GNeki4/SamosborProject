@@ -9,6 +9,7 @@ public class Gun : MonoBehaviour
     public Camera fpsCam;
     public ParticleSystem muzzleFlash;
     public GameObject impactEffect;
+    public Recoil recoil;
 
     private float nextTimeToFire = 0f;
     private AudioSource gunshot;
@@ -32,6 +33,7 @@ public class Gun : MonoBehaviour
     {
         muzzleFlash.Play();
         gunshot.Play();
+        recoil.Fire();
 
         RaycastHit hit;
 
