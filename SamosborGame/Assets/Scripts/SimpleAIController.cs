@@ -5,41 +5,16 @@ using UnityEngine.AI;
 
 public class SimpleAIController : MonoBehaviour
 {
-    /*
+    public float range = 10f;
     public GameObject target;
-    public bool followTarget = true;
-    public float speed = 10f;
-    public float stoppingDistance = 0;
-    public float range = 10f;
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(followTarget)
-        {
-            Seek();
-        }
-    }
-    private void Seek()
-    {
-        float distance = Vector3.Distance(transform.position, target.transform.position);
-        if(distance > stoppingDistance && distance < range)
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(target.transform.position - transform.position);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 12 * Time.deltaTime);
-            transform.position += transform.forward * speed * Time.deltaTime;
-        }
-        
-    }
-    */
-    public float range = 10f;
-    public GameObject target; 
+    public Vector3 start;
 
     NavMeshAgent agent;
 
     public void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        start = transform.position; //
     }
 
     public void Update()
@@ -55,6 +30,10 @@ public class SimpleAIController : MonoBehaviour
                 //attack
                 FaceTarget();
             }
+        }
+        else
+        {
+            agent.SetDestination(start);
         }
     }
 
